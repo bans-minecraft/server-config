@@ -32,7 +32,7 @@ init() {
 
                 echo "Initializing Borg backup repostiory: ${BACKUP_ROOT}"
                 borg init --encryption=none "${BACKUP_ROOT}"
-        }
+        fi
 }
 
 BACKUP_SRC="/var/lib/docker/volumes/minecraft_data/_data"
