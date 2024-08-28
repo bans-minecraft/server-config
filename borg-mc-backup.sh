@@ -26,11 +26,13 @@ retry() {
 }
 
 init() {
-        echo "Ensuring backup root directory: ${BACKUP_ROOT}"
-        mkdir -p "${BACKUP_ROOT}"
+        if [ ! -d "${BACKUP_ROOT}" ]; then
+                echo "Ensuring backup root directory: ${BACKUP_ROOT}"
+                mkdir -p "${BACKUP_ROOT}"
 
-        echo "Initializing Borg backup repostiory: ${BACKUP_ROOT}"
-        borg init --encryption=none "${BACKUP_ROOT}"
+                echo "Initializing Borg backup repostiory: ${BACKUP_ROOT}"
+                borg init --encryption=none "${BACKUP_ROOT}"
+        }
 }
 
 BACKUP_SRC="/var/lib/docker/volumes/minecraft_data/_data"
