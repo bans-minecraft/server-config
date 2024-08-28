@@ -41,7 +41,9 @@ BACKUP_ROOT="$HOME/borg-mc-backups"
 backup() {
         TIMESTAMP=$(date +"%Y-%m-%d_%H:%M")
         echo "Performing backup: ${TIMESTAMP}"
-        borg create --stats "${BACKUP_ROOT}"::"${TIMESTAMP}" "${BACKUP_SRC}"
+        cd "${BACKUP_SRC}"
+        borg create --stats "${BACKUP_ROOT}"::"${TIMESTAMP}" .
+        cd -
 }
 
 RCON_CLI="docker exec minecraft rcon-cli"
